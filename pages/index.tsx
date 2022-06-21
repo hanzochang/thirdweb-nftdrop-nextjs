@@ -1,19 +1,23 @@
 import type { NextPage } from 'next'
+import { NFTList } from '../components/NFTList'
+import { MintButton } from '../components/MintButton'
+import { Wallet } from '../components/Wallet'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <Head>
         <title></title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main></main>
-
-      <footer></footer>
-    </div>
+      <div>
+        <Wallet />
+        <MintButton />
+        <NFTList />
+      </div>
+    </>
   )
 }
 
