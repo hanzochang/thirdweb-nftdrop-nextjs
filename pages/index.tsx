@@ -3,6 +3,7 @@ import { NFTList } from '../components/NFTList'
 import { MintButton } from '../components/MintButton'
 import { Wallet } from '../components/Wallet'
 import Head from 'next/head'
+import { Minting } from '../components/templates/Minting'
 
 const Home: NextPage = () => {
   return (
@@ -13,9 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Wallet />
-        <MintButton />
-        <NFTList />
+        <Minting />
       </div>
     </>
   )
