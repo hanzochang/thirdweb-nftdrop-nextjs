@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { NftContractContext } from '../../contexts/NftContractProvider'
 import { Fade } from '../elements/Fade'
 import { NftListItem } from '../elements/NftListItem'
+import { NoListItems } from '../elements/NoListItems'
 
 const Component: React.FC = () => {
   const [allTokens, setAllTokens] = useState<Array<any>>([])
@@ -33,6 +34,7 @@ const Component: React.FC = () => {
               </React.Fragment>
             )
           })}
+          {!!allTokens && <NoListItems />}
         </SimpleGrid>
       </Box>
     </Fade>
