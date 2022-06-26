@@ -1,7 +1,6 @@
 import { useAddress, useNFTDrop } from '@thirdweb-dev/react'
 import { useEffect, useState } from 'react'
-
-const NULL_ADDRESS = '0x0000000000000000000000000000000000000000'
+import { NULL_ADDRESS } from '../../utils/const'
 
 const Component: React.FC = () => {
   const nftDrop = useNFTDrop(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS)

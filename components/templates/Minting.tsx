@@ -31,7 +31,9 @@ const Component: React.FC = () => {
 
           {address ? (
             <Button onClick={mint} disabled={store.isClaiming}>
-              {store.isClaiming ? 'claiming...' : 'MINT'}
+              {store.isClaiming
+                ? 'claiming...'
+                : `MINT (${store.claimPrice} ETH)`}
             </Button>
           ) : (
             <Button onClick={connectWallet}>

@@ -12,6 +12,7 @@ import {
   useEffect,
   useState,
 } from 'react'
+import { ethers } from 'ethers'
 
 type Store = {
   isLoading: boolean
@@ -22,6 +23,7 @@ type Store = {
   setSpMenuOpened?: Dispatch<SetStateAction<boolean>>
   ownedTokens: Array<any>
   setOwnedTokens?: Dispatch<SetStateAction<boolean>>
+  claimPrice: string
 }
 
 export const NftContractContext = createContext<Store>({
@@ -30,6 +32,7 @@ export const NftContractContext = createContext<Store>({
   isClaiming: false,
   spMenuOpened: false,
   ownedTokens: [],
+  claimPrice: '',
 })
 
 type Props = {
@@ -45,11 +48,16 @@ const Component: React.FC<Props> = ({ children }: Props) => {
   const [isClaiming, setIsClaiming] = useState<boolean>(false)
   const [spMenuOpened, setSpMenuOpened] = useState<boolean>(false)
   const [ownedTokens, setOwnedTokens] = useState<Array<any>>([])
+  const [claimPrice, setClaimPrice] = useState<string>('')
 
   useEffect(() => {
     nftDrop?.getAll().then((results) => {
       setAllTokens(results)
       setIsLoading(false)
+    })
+
+    nftDrop?.claimConditions.getActive().then((activeClaimCondition) => {
+      setClaimPrice(ethers.utils.formatUnits(activeClaimCondition.price._hex))
     })
   }, [])
 
@@ -73,6 +81,10 @@ const Component: React.FC<Props> = ({ children }: Props) => {
       setAllTokens(results)
       setIsLoading(false)
     })
+
+    nftDrop?.claimConditions.getActive().then((activeClaimCondition) => {
+      setClaimPrice(ethers.utils.formatUnits(activeClaimCondition.price._hex))
+    })
   }, [isClaiming])
 
   const store: Store = {
@@ -83,6 +95,7 @@ const Component: React.FC<Props> = ({ children }: Props) => {
     spMenuOpened,
     setSpMenuOpened,
     ownedTokens,
+    claimPrice,
   }
 
   return (
