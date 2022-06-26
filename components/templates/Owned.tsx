@@ -34,7 +34,7 @@ const Component: React.FC = () => {
               </React.Fragment>
             )
           })}
-          {!!allTokens && <NoListItems />}
+          {allTokens.length == 0 && <NoListItems />}
         </SimpleGrid>
       </Box>
     </Fade>
