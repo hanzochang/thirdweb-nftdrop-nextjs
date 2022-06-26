@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     'next',
     'next/core-web-vitals',
+    'react-app',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
@@ -15,6 +16,7 @@ module.exports = {
     },
   },
   rules: {
+    'react/prop-types': 0,
     'react/react-in-jsx-scope': 'off',
     'react/jsx-no-target-blank': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
