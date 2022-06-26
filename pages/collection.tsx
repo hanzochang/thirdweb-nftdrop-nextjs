@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Minting } from '../components/templates/Minting'
-import { CommonLayout } from '../layouts/CommonLayout'
-import type { ReactElement } from 'react'
+import { Collection } from '../components/templates/Collection'
 import type { NextPageWithLayout } from './_app'
+import type { ReactElement } from 'react'
+import { CommonLayout } from '../layouts/CommonLayout'
 import { Fade } from '../components/elements/Fade'
 
 const Home: NextPageWithLayout = () => {
@@ -14,7 +14,7 @@ const Home: NextPageWithLayout = () => {
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Minting />
+      <Collection />
     </>
   )
 }

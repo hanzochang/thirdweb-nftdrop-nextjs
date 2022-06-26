@@ -32,8 +32,6 @@ const Component: React.FC = () => {
             style={{ margin: '0 auto' }}
             onClick={async () => {
               if (nftDrop) {
-                // const txs = await nftDrop.claim(1)
-                console.log('start claim')
                 const txs = await nftDrop.claimTo(address, 1)
                 txs.map((tx) => {
                   tx.data().then((data) => console.log('nft', data))

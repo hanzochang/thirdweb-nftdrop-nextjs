@@ -15,7 +15,6 @@ const Component: React.FC = () => {
     })
 
     nftDrop?.getAll().then((results) => {
-      console.log(results)
       setAllTokens(results)
     })
   }, [])

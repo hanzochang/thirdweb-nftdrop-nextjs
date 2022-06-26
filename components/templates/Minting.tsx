@@ -1,49 +1,46 @@
-import { Box, Flex, Text, Grid, Button } from '@chakra-ui/react'
+import { Box, Button, Flex, Text, VStack } from '@chakra-ui/react'
+import { useContext } from 'react'
+import { NftContractContext } from '../../contexts/NftContractProvider'
+import { useConnectWallet } from '../../hooks/useConnectWallet'
+import { useMint } from '../../hooks/useMint'
+import { Fade } from '../elements/Fade'
+import { NftImagesSlideShow } from '../elements/NftImagesSlideShow'
+
+import { useAddress } from '@thirdweb-dev/react'
 
 const Component: React.FC = () => {
+  const store = useContext(NftContractContext)
+  const address = useAddress()
+
+  const { mint } = useMint()
+  const { connectWallet } = useConnectWallet()
+
   return (
-    <Box minH="100vh" backgroundColor={'blue.100'} position="relative">
-      <Box
-        as="header"
-        backgroundColor="tomato"
-        alignItems="center"
-        position={'fixed'}
-        w="full"
-      >
-        <Flex
-          maxW={'8xl'}
-          justifyContent="space-between"
-          h={20}
-          px={3}
-          alignItems="center"
-          mx="auto"
-        >
-          <Text textStyle="md">NFTDrop</Text>
-          <Flex alignItems="center" gap={8}>
-            <Flex as="nav" gap={2}>
-              <Text as="a">MINT</Text>
-              <Text as="a">COLLECTION</Text>
-              <Text as="a">YOURS</Text>
-            </Flex>
-            <Button>Connect Wallet</Button>
-          </Flex>
-        </Flex>
-      </Box>
-      <Box pt={20} h="calc(100vh)">
-        <Flex
-          maxW={'8xl'}
-          justifyContent="center"
-          h="full"
-          alignItems="center"
-          mx="auto"
-        >
-          <div>
-            <Button mb="2">MINT MINT MINT</Button>
-            <Box textAlign={'center'}>price : 0.001ETH</Box>
-          </div>
-        </Flex>
-      </Box>
-    </Box>
+    <Flex
+      maxW={'8xl'}
+      justifyContent="center"
+      h="100%"
+      alignItems="center"
+      mx="auto"
+    >
+      <Fade>
+        <VStack spacing={6}>
+          <Box width="240px" height="240px">
+            <NftImagesSlideShow />
+          </Box>
+
+          {address ? (
+            <Button onClick={mint} disabled={store.isClaiming}>
+              {store.isClaiming ? 'claiming...' : 'MINT'}
+            </Button>
+          ) : (
+            <Button onClick={connectWallet}>
+              <Text fontSize="xs">Connect Wallet</Text>
+            </Button>
+          )}
+        </VStack>
+      </Fade>
+    </Flex>
   )
 }
 
