@@ -29,17 +29,22 @@ const Component: React.FC = () => {
             <NftImagesSlideShow />
           </Box>
 
-          {address ? (
-            <Button onClick={mint} disabled={store.isClaiming}>
-              {store.isClaiming
-                ? 'claiming...'
-                : `MINT (${store.claimPrice} ETH)`}
-            </Button>
-          ) : (
-            <Button onClick={connectWallet}>
-              <Text fontSize="xs">Connect Wallet</Text>
-            </Button>
-          )}
+          <div>
+            {address ? (
+              <Button onClick={mint} disabled={store.isClaiming}>
+                {store.isClaiming
+                  ? 'claiming...'
+                  : `MINT (${store.claimPrice} ETH)`}
+              </Button>
+            ) : (
+              <Button onClick={connectWallet}>
+                <Text fontSize="xs">Connect Wallet</Text>
+              </Button>
+            )}
+            <Text pt={2} fontSize="xs" textAlign={'center'}>
+              rinkeby testnet
+            </Text>
+          </div>
         </VStack>
       </Fade>
     </Flex>
