@@ -2,17 +2,21 @@
 
 This templates demonstrate the frontend connecting NFTDrop thirdweb's pre-build contract.
 
-### Demo
+## Demo
 
 https://nftdrop-example.hanzochang.com
 
+<img width="1920" alt="スクリーンショット 2022-07-01 9 48 49" src="https://user-images.githubusercontent.com/1862066/176801220-7fb3cfc7-8eed-43e0-b314-978020585c29.png">
+
 Connecting Ethereum testnet(rinkeby).
 
-### Features
+## Features
 
 - mint
 - collection
 - owned collection
+
+## Setup
 
 ### Install
 
