@@ -1,4 +1,4 @@
-# NFTDrop(thirdweb )nextjs template
+# NFTDrop(thirdweb )nextjs example
 
 This templates demonstrate the frontend connecting NFTDrop thirdweb's pre-build contract.
 
@@ -32,7 +32,7 @@ yarn dev
 
 Open http://localhost:3000 with your browser to see the result.
 
-# Learn More
+## Learn More
 
 (Japanese documentation) thirdweb の使い方 - 独自コントラクトの作成と「NFT の MINT サイト」の作り方を紹介
 
