@@ -1,6 +1,18 @@
-# thirdweb NFTDrop nextjs templates
+# NFTDrop(thirdweb )nextjs template
 
 This templates demonstrate the frontend connecting NFTDrop thirdweb's pre-build contract.
+
+### Demo
+
+https://nftdrop-example.hanzochang.com
+
+Connecting Ethereum testnet(rinkeby).
+
+### Features
+
+- mint
+- collection
+- owned collection
 
 ### Install
 
