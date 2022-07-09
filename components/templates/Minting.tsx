@@ -42,6 +42,9 @@ const Component: React.FC = () => {
               </Button>
             )}
             <Text pt={2} fontSize="xs" textAlign={'center'}>
+              {store.claimedSupply} / {store.totalSupply}
+            </Text>
+            <Text pt={2} fontSize="xs" textAlign={'center'}>
               rinkeby testnet
             </Text>
           </div>

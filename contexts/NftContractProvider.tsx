@@ -1,9 +1,11 @@
 import {
   useAddress,
+  useClaimedNFTSupply,
   useMetamask,
   useNetwork,
   useNetworkMismatch,
   useNFTDrop,
+  useUnclaimedNFTSupply,
 } from '@thirdweb-dev/react'
 import {
   createContext,
@@ -24,6 +26,8 @@ type Store = {
   ownedTokens: Array<any>
   setOwnedTokens?: Dispatch<SetStateAction<boolean>>
   claimPrice: string
+  totalSupply: number
+  claimedSupply: number
 }
 
 export const NftContractContext = createContext<Store>({
@@ -33,6 +37,8 @@ export const NftContractContext = createContext<Store>({
   spMenuOpened: false,
   ownedTokens: [],
   claimPrice: '',
+  totalSupply: 0,
+  claimedSupply: 0,
 })
 
 type Props = {
@@ -49,6 +55,11 @@ const Component: React.FC<Props> = ({ children }: Props) => {
   const [spMenuOpened, setSpMenuOpened] = useState<boolean>(false)
   const [ownedTokens, setOwnedTokens] = useState<Array<any>>([])
   const [claimPrice, setClaimPrice] = useState<string>('')
+  const [totalSupply, setTotalSupply] = useState<number>(0)
+  const [claimedSupply, setClaimedSupply] = useState<number>(0)
+
+  const { data: unclaimedNft } = useUnclaimedNFTSupply(nftDrop)
+  const { data: claimedNft } = useClaimedNFTSupply(nftDrop)
 
   useEffect(() => {
     nftDrop?.getAll().then((results) => {
@@ -73,6 +84,13 @@ const Component: React.FC<Props> = ({ children }: Props) => {
 
       setOwnedTokens(owneds)
     }
+
+    setClaimedSupply(claimedNft?.toNumber() || 0)
+    setTotalSupply(
+      claimedNft && unclaimedNft
+        ? claimedNft.toNumber() + unclaimedNft.toNumber()
+        : 0
+    )
   }, [allTokens])
 
   useEffect(() => {
@@ -96,6 +114,8 @@ const Component: React.FC<Props> = ({ children }: Props) => {
     setSpMenuOpened,
     ownedTokens,
     claimPrice,
+    claimedSupply,
+    totalSupply,
   }
 
   return (
