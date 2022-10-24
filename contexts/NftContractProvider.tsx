@@ -1,6 +1,7 @@
 import {
   useAddress,
   useClaimedNFTSupply,
+  useContract,
   useMetamask,
   useNetwork,
   useNetworkMismatch,
@@ -46,7 +47,10 @@ type Props = {
 }
 
 const Component: React.FC<Props> = ({ children }: Props) => {
-  const nftDrop = useNFTDrop(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS)
+  const { data: nftDrop } = useContract(
+    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+    'nft-drop'
+  )
 
   const address = useAddress()
   const [allTokens, setAllTokens] = useState<Array<any>>([])
@@ -70,7 +74,7 @@ const Component: React.FC<Props> = ({ children }: Props) => {
     nftDrop?.claimConditions.getActive().then((activeClaimCondition) => {
       setClaimPrice(ethers.utils.formatUnits(activeClaimCondition.price._hex))
     })
-  }, [])
+  }, [nftDrop])
 
   useEffect(() => {
     if (address) {

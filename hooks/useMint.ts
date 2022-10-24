@@ -1,4 +1,4 @@
-import { useNFTDrop } from '@thirdweb-dev/react'
+import { useContract, useNFTDrop } from '@thirdweb-dev/react'
 import { useContext } from 'react'
 
 import {
@@ -11,7 +11,10 @@ import {
 import { NftContractContext } from '../contexts/NftContractProvider'
 
 export const useMint = () => {
-  const nftDrop = useNFTDrop(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS)
+  const { data: nftDrop } = useContract(
+    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+    'nft-drop'
+  )
   const store = useContext(NftContractContext)
 
   const address = useAddress()

@@ -1,9 +1,12 @@
-import { useAddress, useNFTDrop } from '@thirdweb-dev/react'
+import { useAddress, useContract, useNFTDrop } from '@thirdweb-dev/react'
 import { useEffect, useState } from 'react'
 import { NULL_ADDRESS } from '../../utils/const'
 
 const Component: React.FC = () => {
-  const nftDrop = useNFTDrop(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS)
+  const { data: nftDrop } = useContract(
+    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+    'nft-drop'
+  )
   const [allTokens, setAllTokens] = useState<Array<any>>([])
   const [mintPrice, setMintPrice] = useState<string>('')
   const address = useAddress()
@@ -16,7 +19,7 @@ const Component: React.FC = () => {
     nftDrop?.getAll().then((results) => {
       setAllTokens(results)
     })
-  }, [])
+  }, [nftDrop])
 
   return (
     <>
